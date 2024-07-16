@@ -1,0 +1,12 @@
+b1:npm init --yes 
+b2:npm install --save @apollo/server express http cors body-parser
+
+kiểu dữ liệu của các biến:
+typeQuery từ grapql là khi client truy vấn dữ liệu
+multation update hay xoá dữ liệu
+subscription update kiểu dạng realtime
+
+cài database mysql vào nodejs
+
+chạy tự động cài npm install nodemon và cấu hình lại package.json để chạy 
+nodemon là nodemon Server.mjs
