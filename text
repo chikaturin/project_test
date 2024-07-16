@@ -10,3 +10,6 @@ cài database mysql vào nodejs
 
 chạy tự động cài npm install nodemon và cấu hình lại package.json để chạy 
 nodemon là nodemon Server.mjs
+
+cài npm install mysql2 
+xong cài npm install graphql-request(client)

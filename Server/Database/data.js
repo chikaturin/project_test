@@ -1,15 +1,18 @@
-  import mysql from 'mysql';
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'DB_CNPM'
-});
+import mysql from 'mysql2/promise';
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Connected to MySQL database.');
-});
+async function initializeConnection() {
+  const connection = await mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'DB_CNPM'
+  });
+
+  console.log('Successful Connected to MySQL database.');
+  return connection;
+}
+
+const connection = await initializeConnection();
 
 export default connection;

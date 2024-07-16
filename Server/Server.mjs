@@ -5,16 +5,15 @@ import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHt
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { expressMiddleware } from '@apollo/server/express4';
-import { typeDefs } from './Schema/typeDefs.js';
-import { resolvers } from './Schema/resolvers.js';
-
+import {typeDefs} from './Schema_Resolve/typeDefs.js';
+import {resolvers} from './Schema_Resolve/resolvers.js';
 const app = express();
 const httpServer = http.createServer(app);
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
 await server.start();
