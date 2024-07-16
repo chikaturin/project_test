@@ -1,18 +1,23 @@
 import mysql from 'mysql2/promise';
 
-async function initializeConnection() {
-  const connection = await mysql.createConnection({
-    host: process.env.DB_HOST,
+export const pool = mysql.createPool({
+    host: process.env.DB_HOST,  // Sửa lại với địa chỉ IP của cơ sở dữ liệu
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT
-  });
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 
-  console.log('Successful Connected to MySQL database.');
-  return connection;
+// Hàm khởi tạo kết nối, không xuất khẩu
+export async function initializeConnection() {
+    try {
+        // Test một kết nối
+        await pool.query('SELECT 1');
+        console.log('Database connected successfully!');
+    } catch (error) {
+        console.error('Database connection failed:', error);
+        throw error;  // Rethrow lỗi để quản lý ở nơi gọi
+    }
 }
-
-const connection = await initializeConnection();
-
-export default connection;

@@ -1,4 +1,4 @@
-import connection from '../Database/data.js';
+import { pool } from '../Database/data.js';
 
 export const InsertSanBay= async (_parent, args) => {
         const { TenSanBay, ThanhPho} = args;
@@ -6,7 +6,7 @@ export const InsertSanBay= async (_parent, args) => {
         const values = [ TenSanBay, ThanhPho];
   
         try {
-          const [result] = await connection.execute(insertQuery, values);
+          const [result] = await pool.execute(insertQuery, values);
           return {
             TenSanBay,
             TenThanhPhoKH,
@@ -23,8 +23,8 @@ export const InsertSanBay= async (_parent, args) => {
         const values = [ThanhPho, MaSB];
       
         try {
-          await connection.execute(updateQuery, values);
-          const [updatedSanBay] = await connection.execute('SELECT * FROM DanhSachSanBay WHERE MaSB = ?', [MaSB]);
+          await pool.execute(updateQuery, values);
+          const [updatedSanBay] = await pool.execute('SELECT * FROM DanhSachSanBay WHERE MaSB = ?', [MaSB]);
       
           return updatedSanBay[0];
         } catch (error) {

@@ -1,4 +1,4 @@
-import connection from '../Database/data.js';
+import { pool } from '../Database/data.js';
 
 export const InsertKhachHang= async (_parent, args) => {
         const { MaCus, TenKH, Sdt, Email, NgaySinh, Password } = args;
@@ -6,7 +6,7 @@ export const InsertKhachHang= async (_parent, args) => {
         const values = [MaCus, TenKH, Sdt, Email, NgaySinh, Password];
   
         try {
-          const [result] = await connection.execute(insertQuery, values);
+          const [result] = await pool.execute(insertQuery, values);
           return {
             MaCus,
             TenKH,
